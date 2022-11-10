@@ -1,0 +1,163 @@
+//USE TurboC++ compiler
+#include<string.h>
+#include<conio.h>
+#include<stdio.h>
+void list(int i,char pro[20][20],long int pr[20],long int off[20],long int q[20],int c)
+{
+clrscr();
+printf("\n\t\t **********list********");
+printf("\n no \t product \t price \t quantity \t discount");
+while (i<c)
+{
+printf("\n %d \t %s \t %lu \t %lu \t\t %lu%",i+1,pro[i],pr[i],q[i],off[i]);
+i++;
+}
+
+}
+void main()
+{
+long int t=0,td=0 ,a=0;
+int i=0,j=0,k,e,c=9;
+long int w[20],z,s[20],
+pr[20]={10000,15000,500,2000,250,2000,3000,400,200},off[20]={3,4,0,1,2,0,0,0,0},q[20]={1
+0,10,10,10,10,10,10,10,10};
+char pro[20][20]={"mobile","laptop","earphone","speaker","microphone","cpu
+","moniter","mouse ","keyboard"};
+clrscr();
+y:
+do
+{ clrscr();
+printf("\n 1. show list of products");
+
+printf("\n 2. edit list");
+printf("\n 3. make a purchase");
+printf("\n 4. exit");
+printf("\n\n \nenter your choice");
+scanf("\n %d",&k);
+
+switch(k)
+{
+case 1:
+list(i,pro,pr,off,q,c);
+printf("\n press 0 for main menu \n");
+scanf("\n %d",&i);
+break;
+case 2:
+clrscr();
+list(i,pro,pr,off,q,c);
+printf("\n edit list");
+printf("\n enter no");
+scanf("\n %d",&i);
+if(i<=c)
+{
+printf("\n enter product");
+scanf("\n %s",&pro[i-1]);
+printf("\n enter price");
+scanf("\n %lu",&pr[i-1]);
+printf("\n enter quantity");
+scanf("\n %lu",&q[i-1]);
+printf("\n enter discount");
+scanf("\n %lu",&off[i-1]);
+printf("\n %d \t %s \t %lu \t %lu%",i,pro[i-1],pr[i-1],off[i-1]);
+i=0;
+
+}
+
+else
+{
+printf("\n enter product");scanf("%s",&pro[i-1]);
+printf("\n enter price");scanf("%lu",&pr[i-1]);
+printf("\n enter quantity");
+scanf("\n %lu\t",&q[i-1]);
+printf("\n enter discount");
+scanf(" %lu",&off[i-1]);
+i=0;
+c++;
+}
+break;
+
+case 3:
+clrscr();
+x:
+do
+{
+clrscr();
+printf("\n 1. add product");
+printf("\n 2. print invoice");
+printf("\n 3. Back");
+printf("\n\n enter your choice");
+scanf("\n%d",&e);
+switch (e)
+{
+case 1:
+clrscr();
+printf("\n\t\t ****list****");
+list(i,pro,pr,off,q,c);
+printf("\n Enter the product no u want to buy \n");
+scanf("\n %d",&i);
+if(q[i-1]>0)
+{
+printf("\n product:%s",pro[i-1]);
+printf("\n price:%lu",pr[i-1]);
+printf("\n discount:%lu",off[i-1]);
+printf("\n enter quantity");
+scanf(" %lu",&w[j]);
+
+}
+else
+{
+printf("\n product unavailable");
+}
+q[i-1]=q[i-1]-w[j];
+t=t+pr[i-1]*w[j];
+td=td+(pr[i-1]*w[j]*off[i-1])/100;
+a=t-td;
+s[j]=i;
+z=j;
+i=0;
+j++;
+break;
+case 2:
+clrscr();
+
+printf("\n ****invoice****");
+printf("\n no \t product \t price \t quantity \t discount");
+j=0;
+while(j<=z)
+{ i=s[j];
+printf("\n %d \t %s \t %lu \t %lu \t\t %lu%",j+1,pro[i-1],pr[i-1],w[j],off[i-1]);
+j++;
+}
+printf("\n------------------------------------------------------------");
+printf("\n **\t*******\t\t %lu \t\t%lu",t,td);
+printf("\n\n total amount to pay------------------------------%lu",a);
+printf("\n\n-----------------------------------------------------------");
+printf("\n enter a valid option");
+printf("\n press 0 to go back");
+scanf("\n %d",&j);
+goto x;
+break;
+case 3:
+goto y;
+break;
+default:
+
+printf("enter a valid option");
+printf("\n press 0 to go back");
+scanf("\n %d",&j);
+break;
+}
+}
+while(j!=0);
+case 4:
+exit(1);
+break;
+default:
+clrscr();
+printf("\n please enter a valid choice");
+printf("\n press 0 for main menu \n");
+scanf("\n %d",&i);
+}
+} while(k!=4);
+getch();
+}
